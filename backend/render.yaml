@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mopolee-paystack-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"

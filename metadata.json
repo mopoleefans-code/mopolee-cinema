@@ -1,0 +1,8 @@
+{
+  "name": "MOPOLEE CINEMA & EXCHANGE",
+  "description": "MOPOLEE Cinema & Gift Card Exchange app featuring Night of the Living Dead Episodes 1 to 32, Big / Small screen toggle, offline video player, spoken narration, and VIP cinema pass.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
