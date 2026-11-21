@@ -33,7 +33,7 @@ jobs:
         run: sdkmanager "platforms;android-35" "build-tools;36.0.0"
 
       - name: Build debug APK
-        run: gradle assembleDebug
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
