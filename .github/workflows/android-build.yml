@@ -1,3 +1,4 @@
+
 name: Build MOPOLEE CINEMA APK
 
 on:
@@ -20,17 +21,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
         with:
-          gradle-version: '9.3.1'
-
-            - name: Set up Android SDK
-        uses:android-actions/setup-android@v3
-        with:                                     
-             
-accept-android-sdk-licenses: false
-
+          accept-android-sdk-licenses: false
 
       - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses
@@ -47,3 +41,4 @@ accept-android-sdk-licenses: false
           name: MOPOLEE-CINEMA-debug-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
