@@ -119,7 +119,7 @@ class FilmViewModel(application: Application) : AndroidViewModel(application) {
         if (_isVipMember.value) return false
         if (film.isUserUpload) return false
         val epNum = film.episodeNumber ?: return false
-        return epNum > 2
+        return false
     }
 
     /**

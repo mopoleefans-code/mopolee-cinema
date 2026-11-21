@@ -177,7 +177,7 @@ fun FilmDetailScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            val isEpisodeLocked = !isVipMember && !film.isUserUpload && (film.episodeNumber ?: 0) > 2
+            val isEpisodeLocked = false
             if (isEpisodeLocked) {
                 Surface(
                     color = Color(0xFFFFB300).copy(alpha = 0.15f),
