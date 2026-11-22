@@ -1,47 +1,52 @@
 
-name: Build MOPOLEE CINEMA APK
+name: MOPOLEE CINEMA APK Build
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   build:
-    name: Build Android APK
+    name: Build MOPOLEE CINEMA
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout MOPOLEE CINEMA
+      - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Install Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-          cache: gradle
 
-      - name: Set up Android SDK
+      - name: Configure Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Install Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools platforms;android-35 build-tools;36.0.0'
 
-      - name: Verify Android SDK
+      - name: Install required SDK packages
         run: |
-          sdkmanager --list_installed
-          echo "ANDROID_HOME=$ANDROID_HOME"
+          sdkmanager --install "platform-tools"
+          sdkmanager --install "platforms;android-35"
+          sdkmanager --install "build-tools;36.0.0"
 
-      - name: Build MOPOLEE CINEMA Debug APK
+      - name: Check Gradle wrapper
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon clean assembleDebug
+          ./gradlew --version
 
-      - name: Upload MOPOLEE CINEMA APK
+      - name: Build Debug APK
+        run: |
+          ./gradlew --no-daemon --stacktrace :app:assembleDebug
+
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MOPOLEE-CINEMA-debug-APK
